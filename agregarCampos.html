@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Botones 🎛️</title>
+    <!-- FONT AWESOEM -->
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+      integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://kit.fontawesome.com/fda887a401.js"
+      crossorigin="anonymous"
+    ></script>
+    <!-- Añadir jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Añadir Bootstrap CSS -->
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="container mt-4">
+      <h3>Horarios:</h3>
+      <button id="add_field" class="btn btn-primary mb-3">
+        <i class="fa-solid fa-plus"></i> Añadir campo
+      </button>
+      <div id="listas">
+        <div class="contenedorHorarios mb-3 p-3 border rounded">
+          <div class="form-group">
+            <label for="dia">Día:</label>
+            <input type="date" name="campo[]" class="form-control" />
+          </div>
+          <div class="form-group">
+            <label for="hora_inicial">Hora inicial:</label>
+            <input type="time" name="campo[]" class="form-control" />
+          </div>
+          <div class="form-group">
+            <label for="hora_final">Hora final:</label>
+            <input type="time" name="campo[]" class="form-control" />
+          </div>
+          <div class="form-group">
+            <label for="lugar">Lugar:</label>
+            <input type="text" name="campo[]" class="form-control" />
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Añadir Bootstrap JS y Popper.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script>
+      var campos_max = 5;
+      var x = 1; // Ya tienes un conjunto de campos
+      $("#add_field").click(function (e) {
+        e.preventDefault();
+        if (x < campos_max) {
+          $("#listas").append(
+            "<div class='contenedorHorarios mb-3 p-3 border rounded'>\
+              <div class='form-group'>\
+                <label for='dia'>Día:</label>\
+                <input type='date' name='campo[]' class='form-control' />\
+              </div>\
+              <div class='form-group'>\
+                <label for='hora_inicial'>Hora inicial:</label>\
+                <input type='time' name='campo[]' class='form-control' />\
+              </div>\
+              <div class='form-group'>\
+                <label for='hora_final'>Hora final:</label>\
+                <input type='time' name='campo[]' class='form-control' />\
+              </div>\
+              <div class='form-group'>\
+                <label for='lugar'>Lugar:</label>\
+                <input type='text' name='campo[]' class='form-control' />\
+              </div>\
+            <div class='text-right'>\
+                <button class='btn btn-danger remover_campo'>\
+                    <i class='fa-solid fa-minus'></i> Eliminar\
+                </button>\
+            </div>\
+            </div>"
+          );
+          x++;
+        }
+      });
+
+      $("#listas").on("click", ".remover_campo", function (e) {
+        e.preventDefault();
+        $(this).closest(".contenedorHorarios").remove();
+        x--;
+      });
+    </script>
+  </body>
+</html>
